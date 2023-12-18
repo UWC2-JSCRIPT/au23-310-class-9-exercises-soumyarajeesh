@@ -20,7 +20,33 @@ console.log(counter.getCount());
 // - addMessage method that adds a message to the array
 // - getMessage(index) method that returns the message at index index
 
-const createMessageHolder = () => {};
+//const createMessageHolder = () => {};
+function createMessageHolder() {
+  const messages = [];
+
+  return {
+    addMessage: function (message) {
+      messages.push(message);
+    },
+    getMessage: function (index) {
+      if (index >= 0 && index < messages.length) {
+        return messages[index];
+      } else {
+        return "Invalid index";
+      }
+    },
+  };
+}
+
+// Example usage:
+const messageHolder1 = createMessageHolder();
+messageHolder1.addMessage("Message 1");
+messageHolder1.addMessage("Message 2");
+
+console.log(messageHolder1.getMessage(0)); // Output: "Message 1"
+console.log(messageHolder1.getMessage(1)); // Output: "Message 2"
+console.log(messageHolder1.getMessage(2)); // Output: "Invalid index"
+
 
 // Test
 const messageHolder = createMessageHolder();
@@ -55,7 +81,16 @@ console.log(addThree(41));
 // This will return a function a function greet
 // - This accepts a single argument, name (i.e. "Matt")
 // - This function should return the greeting combined with the name, (i.e. "Hello Matt")
-const createGreeting = function(greeting) {};
+//const createGreeting = function(greeting) {};
+function createGreeting(greeting) {
+  return function greet(name) {
+    return `${greeting} ${name}`;
+  };
+}
+
+const sayHello = createGreeting("Hello");
+const greetingMessage = sayHello("Matt");
+console.log(greetingMessage); // Output: "Hello Matt"
 
 // Test
 const welcomeGreet = createGreeting('Welcome');
